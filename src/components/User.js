@@ -1,5 +1,5 @@
-import React , {useState} from "react";
-import { Row, Col, Card, Modal, Form, Input  } from "antd";
+import React, { useState } from "react";
+import { Row, Col, Card, Modal, Form, Input } from "antd";
 import {
   MailOutlined,
   PhoneOutlined,
@@ -7,17 +7,47 @@ import {
   HeartOutlined,
   EditOutlined,
   DeleteFilled,
-  HeartFilled
+  HeartFilled,
 } from "@ant-design/icons";
+import axios from "axios";
 const User = ({ userData, handleFavorite, openNotification }) => {
   const { Meta } = Card;
   const [open, setOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
   const [confirmLoading, setConfirmLoading] = useState(false);
-//   EDIT MODAL
-  const showModal = () => {
+  const [form] = Form.useForm();
+
+  // EDIT USER DATA
+  const handleEdit = async (e, index) => {
+    const getRequest = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${e}`
+    );
+    const { data } = getRequest;
+    setUserInfo({ ...data, index });
     setOpen(true);
+    form.setFieldsValue(data)
   };
+  const onEdit = async (e) => {
+    const { index, ...data } = userInfo;
+    console.log(e);
+    const body = {
+      ...data,
+      ...e,
+    };
+    userData[index] = { ...body };
+
+    setOpen(false);
+  };
+  //   EDIT MODAL
   const handleOk = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        onEdit(values);
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
@@ -25,9 +55,8 @@ const User = ({ userData, handleFavorite, openNotification }) => {
     }, 2000);
   };
   const handleCancel = () => {
-    console.log('Clicked cancel button');
     setOpen(false);
-  }
+  };
 
   return (
     <div>
@@ -38,7 +67,7 @@ const User = ({ userData, handleFavorite, openNotification }) => {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <Form name="editUser">
+        <Form name="editUser" form={form} initialValues={userInfo}>
           <Form.Item
             name={"name"}
             label="Name"
@@ -109,20 +138,29 @@ const User = ({ userData, handleFavorite, openNotification }) => {
                   />
                 }
                 actions={[
-                    user.isFavorite === true ? (
-                        <HeartFilled
-                          key="de-favorite"
-                          style={{ color: "red" }}
-                          onClick={() => {handleFavorite(user.id); openNotification("Removed from favorite")}} 
-                        />
-                      ) : (
-                        <HeartOutlined
-                          key="favorite"
-                          style={{ color: "red" }}
-                          onClick={() => {handleFavorite(user.id); openNotification("Added to favorite")}} 
-                        />
-                      ),
-                  <EditOutlined key="edit" onClick={showModal} />,
+                  user.isFavorite === true ? (
+                    <HeartFilled
+                      key="de-favorite"
+                      style={{ color: "red" }}
+                      onClick={() => {
+                        handleFavorite(user.id);
+                        openNotification("Removed from favorite");
+                      }}
+                    />
+                  ) : (
+                    <HeartOutlined
+                      key="favorite"
+                      style={{ color: "red" }}
+                      onClick={() => {
+                        handleFavorite(user.id);
+                        openNotification("Added to favorite");
+                      }}
+                    />
+                  ),
+                  <EditOutlined
+                    key="edit"
+                    onClick={(e) => handleEdit(user.id, index)}
+                  />,
                   <DeleteFilled key="delete" />,
                 ]}
               >
