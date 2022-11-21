@@ -41,7 +41,6 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
       .validateFields()
       .then((values) => {
         onEdit(values);
-        console.log(values);
         if (
           values.name === userInfo.name &&
           values.phone === userInfo.phone &&
