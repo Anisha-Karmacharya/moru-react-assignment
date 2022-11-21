@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-import { Row, Col, Card, Modal, Form, Input } from "antd";
+import { Row, Col, Card, Modal, Form, Input, notification  } from "antd";
 import {
   MailOutlined,
   PhoneOutlined,
@@ -12,6 +12,7 @@ const User = ({ userData }) => {
   const { Meta } = Card;
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+//   EDIT MODAL
   const showModal = () => {
     setOpen(true);
   };
@@ -26,6 +27,17 @@ const User = ({ userData }) => {
     console.log('Clicked cancel button');
     setOpen(false);
   }
+// FAVORITE NOTIFICATION
+  const openNotification = () => {
+    notification.open({
+      message: 'Sucess',
+      description:
+        'Data added to favorite',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
   return (
     <div>
       <Modal
@@ -106,7 +118,7 @@ const User = ({ userData }) => {
                   />
                 }
                 actions={[
-                  <HeartOutlined key="favorite" style={{ color: "red" }} />,
+                  <HeartOutlined key="favorite" style={{ color: "red" }} onClick={openNotification}/>,
                   <EditOutlined key="edit" onClick={showModal} />,
                   <DeleteFilled key="delete" />,
                 ]}
