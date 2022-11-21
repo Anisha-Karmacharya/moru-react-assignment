@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Card } from "antd";
+import {MailOutlined, PhoneOutlined, GlobalOutlined} from '@ant-design/icons';
 const User = ({ userData }) => {
   const { Meta } = Card;
   return (
@@ -31,9 +32,9 @@ const User = ({ userData }) => {
                   title={user.name}
                   description={[
                     <div key={index}>
-                      <p> {user.email}</p>
-                      <p>{user.phone}</p>
-                      <p> {user.website}</p>
+                      <p> <MailOutlined /> {user.email}</p>
+                      <p><PhoneOutlined /> {user.phone}</p>
+                      <p><GlobalOutlined /> {user.website}</p>
                     </div>,
                   ]}
                 />
