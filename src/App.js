@@ -19,7 +19,7 @@ function App() {
   console.log(data)
   return (
     <div className="App">
-      <User />
+      <User userData={data}/>
     </div>
   );
 }
