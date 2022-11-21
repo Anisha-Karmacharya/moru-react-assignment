@@ -134,8 +134,9 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
           userData.map((user, index) => (
             <Col
               xs={{ span: 24 }}
-              md={{ span: 8 }}
-              lg={{ span: 6 }}
+              md={{ span: 12 }}
+              lg={{ span: 8 }}
+              xl={{ span: 6 }}
               key={index}
             >
               <Card
