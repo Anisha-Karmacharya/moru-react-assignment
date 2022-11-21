@@ -142,7 +142,7 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
                 cover={
                   <img
                     alt="user-image"
-                    src="https://avatars.dicebear.com/api/micah/your-custom-seed.svg"
+                    src={`https://avatars.dicebear.com/api/avataaars/${user.id}.svg?`}
                   />
                 }
                 actions={[
