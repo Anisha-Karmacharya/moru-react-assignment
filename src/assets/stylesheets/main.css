@@ -1,0 +1,18 @@
+.ant-card-meta-title{
+    font-size: 18px !important;
+}
+.ant-card-meta-description{
+    font-size: 16px;
+}
+.ant-card-meta-description p{
+    margin: 5px 0px;
+}
+.ant-card-actions{
+    background: #ececec !important;
+}
+.ant-card-actions li{
+    border-inline-end: 1px solid #adadad !important;
+}
+.ant-card-actions li:last-child{
+    border-inline-end: none !important;
+}
