@@ -134,15 +134,16 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
           userData.map((user, index) => (
             <Col
               xs={{ span: 24 }}
-              md={{ span: 8 }}
-              lg={{ span: 6 }}
+              md={{ span: 12 }}
+              lg={{ span: 8 }}
+              xl={{ span: 6 }}
               key={index}
             >
               <Card
                 cover={
                   <img
                     alt="user-image"
-                    src="https://avatars.dicebear.com/api/micah/your-custom-seed.svg"
+                    src={`https://avatars.dicebear.com/api/avataaars/${user.id}.svg?`}
                   />
                 }
                 actions={[
