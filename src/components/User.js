@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-import { Row, Col, Card, Modal, Form, Input, notification  } from "antd";
+import { Row, Col, Card, Modal, Form, Input  } from "antd";
 import {
   MailOutlined,
   PhoneOutlined,
@@ -9,7 +9,7 @@ import {
   DeleteFilled,
   HeartFilled
 } from "@ant-design/icons";
-const User = ({ userData, handleFavorite }) => {
+const User = ({ userData, handleFavorite, openNotification }) => {
   const { Meta } = Card;
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -28,17 +28,7 @@ const User = ({ userData, handleFavorite }) => {
     console.log('Clicked cancel button');
     setOpen(false);
   }
-// FAVORITE NOTIFICATION
-  const openNotification = () => {
-    notification.open({
-      message: 'Sucess',
-      description:
-        'Data added to favorite',
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
-  };
+
   return (
     <div>
       <Modal
@@ -123,13 +113,13 @@ const User = ({ userData, handleFavorite }) => {
                         <HeartFilled
                           key="de-favorite"
                           style={{ color: "red" }}
-                          onClick={() => {openNotification(); handleFavorite(user.id)} }
+                          onClick={() => {handleFavorite(user.id); openNotification("Removed from favorite")}} 
                         />
                       ) : (
                         <HeartOutlined
                           key="favorite"
                           style={{ color: "red" }}
-                          onClick={() => handleFavorite(user.id)}
+                          onClick={() => {handleFavorite(user.id); openNotification("Added to favorite")}} 
                         />
                       ),
                   <EditOutlined key="edit" onClick={showModal} />,
