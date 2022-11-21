@@ -31,7 +31,7 @@ function App() {
   // HANDLE DELETE
   const handleDelete = (name, id) => {
     setData((users) => users.filter((user) => user.id !== id));
-    openNotification(`${name}'s data deleted`)
+    openNotification(`${name}'s data deleted`);
   };
   useEffect(() => {
     getData();
@@ -39,6 +39,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="appTitle">React Assignment - Anisha Karmacharya</div>
       <User
         url={URL}
         userData={data}
