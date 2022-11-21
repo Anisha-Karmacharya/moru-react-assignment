@@ -151,7 +151,7 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
                       style={{ color: "red" }}
                       onClick={() => {
                         handleFavorite(user.id);
-                        openNotification("Removed from favorite");
+                        openNotification(`${user.name} removed from favorite`);
                       }}
                     />
                   ) : (
@@ -160,7 +160,7 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
                       style={{ color: "red" }}
                       onClick={() => {
                         handleFavorite(user.id);
-                        openNotification("Added to favorite");
+                        openNotification(`${user.name} added to favorite`);
                       }}
                     />
                   ),

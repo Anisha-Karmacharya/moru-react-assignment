@@ -9,8 +9,8 @@ function App() {
   // FAVORITE NOTIFICATION
   const openNotification = (description) => {
     notification["success"]({
-      message: "Success",
       description,
+      duration: 1.5,
     });
   };
   // FETCH DATA
