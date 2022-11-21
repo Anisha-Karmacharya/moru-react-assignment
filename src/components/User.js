@@ -26,6 +26,8 @@ const User = ({ userData, handleFavorite, openNotification }) => {
     setOpen(true);
     form.setFieldsValue(data);
   };
+
+  // Submit edited value
   const onEdit = async (e) => {
     const { index, ...data } = userInfo;
     const body = {
@@ -36,16 +38,23 @@ const User = ({ userData, handleFavorite, openNotification }) => {
 
     setOpen(false);
   };
-  //   EDIT MODAL
   const handleOk = () => {
     form
       .validateFields()
       .then((values) => {
-        onEdit(values);
+        onEdit(values);   
+        console.log(values)
+        if(values.name === userInfo.name && values.phone === userInfo.phone && values.email === userInfo.email && values.website === userInfo.website){
+            openNotification("no value edited")
+        }
+        else{
+            openNotification("User Data Edited")
+        }
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
       });
+      
   };
   const handleCancel = () => {
     setOpen(false);
@@ -59,7 +68,7 @@ const User = ({ userData, handleFavorite, openNotification }) => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form name="editUser" form={form} initialValues={userInfo}>
+        <Form name="editUser" form={form} initialValues={userInfo}  labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
           <Form.Item
             name={"name"}
             label="Name"
