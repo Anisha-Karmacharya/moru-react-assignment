@@ -14,7 +14,6 @@ const User = ({ userData, handleFavorite, openNotification }) => {
   const { Meta } = Card;
   const [open, setOpen] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
   // EDIT USER DATA
@@ -25,11 +24,10 @@ const User = ({ userData, handleFavorite, openNotification }) => {
     const { data } = getRequest;
     setUserInfo({ ...data, index });
     setOpen(true);
-    form.setFieldsValue(data)
+    form.setFieldsValue(data);
   };
   const onEdit = async (e) => {
     const { index, ...data } = userInfo;
-    console.log(e);
     const body = {
       ...data,
       ...e,
@@ -48,11 +46,6 @@ const User = ({ userData, handleFavorite, openNotification }) => {
       .catch((info) => {
         console.log("Validate Failed:", info);
       });
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -64,7 +57,6 @@ const User = ({ userData, handleFavorite, openNotification }) => {
         title="Edit User"
         open={open}
         onOk={handleOk}
-        confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
         <Form name="editUser" form={form} initialValues={userInfo}>
