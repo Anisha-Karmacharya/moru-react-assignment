@@ -10,7 +10,7 @@ import {
   HeartFilled,
 } from "@ant-design/icons";
 import axios from "axios";
-const User = ({ userData, handleFavorite, openNotification }) => {
+const User = ({ url, userData, handleFavorite, openNotification, handleDelete }) => {
   const { Meta } = Card;
   const [open, setOpen] = useState(false);
   const [userInfo, setUserInfo] = useState({});
@@ -18,9 +18,7 @@ const User = ({ userData, handleFavorite, openNotification }) => {
 
   // EDIT USER DATA
   const handleEdit = async (e, index) => {
-    const getRequest = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${e}`
-    );
+    const getRequest = await axios.get(`${url}/${e}`);
     const { data } = getRequest;
     setUserInfo({ ...data, index });
     setOpen(true);
@@ -42,24 +40,26 @@ const User = ({ userData, handleFavorite, openNotification }) => {
     form
       .validateFields()
       .then((values) => {
-        onEdit(values);   
-        console.log(values)
-        if(values.name === userInfo.name && values.phone === userInfo.phone && values.email === userInfo.email && values.website === userInfo.website){
-            openNotification("no value edited")
-        }
-        else{
-            openNotification("User Data Edited")
+        onEdit(values);
+        console.log(values);
+        if (
+          values.name === userInfo.name &&
+          values.phone === userInfo.phone &&
+          values.email === userInfo.email &&
+          values.website === userInfo.website
+        ) {
+          openNotification("no value edited");
+        } else {
+          openNotification("User Data Edited");
         }
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
       });
-      
   };
   const handleCancel = () => {
     setOpen(false);
   };
-
   return (
     <div>
       <Modal
@@ -68,7 +68,13 @@ const User = ({ userData, handleFavorite, openNotification }) => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form name="editUser" form={form} initialValues={userInfo}  labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+        <Form
+          name="editUser"
+          form={form}
+          initialValues={userInfo}
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 18 }}
+        >
           <Form.Item
             name={"name"}
             label="Name"
@@ -162,7 +168,7 @@ const User = ({ userData, handleFavorite, openNotification }) => {
                     key="edit"
                     onClick={(e) => handleEdit(user.id, index)}
                   />,
-                  <DeleteFilled key="delete" />,
+                  <DeleteFilled key="delete"  onClick={(e)=>handleDelete(user.name, user.id)}/>,
                 ]}
               >
                 <Meta
