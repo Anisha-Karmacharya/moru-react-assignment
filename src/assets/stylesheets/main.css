@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@500&display=swap");
+body {
+  margin: 0;
+}
+.ant-card-meta-title {
+  font-size: 18px !important;
+}
+.ant-card-meta-description {
+  font-size: 16px;
+}
+.ant-card-meta-description p {
+  margin: 5px 0px;
+}
+.ant-card-actions {
+  background: #ececec !important;
+}
+.ant-card-actions li {
+  border-inline-end: 1px solid #adadad !important;
+}
+.ant-card-actions li:last-child {
+  border-inline-end: none !important;
+}
+.appTitle {
+  background-color: rgb(200, 226, 248);
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  font-family: "Syne", sans-serif;
+  font-size: 24px;
+}
+.userDetail {
+  margin-top: 25px;
+}
