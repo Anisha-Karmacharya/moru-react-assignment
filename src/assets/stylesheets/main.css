@@ -7,3 +7,12 @@
 .ant-card-meta-description p{
     margin: 5px 0px;
 }
+.ant-card-actions{
+    background: #ececec !important;
+}
+.ant-card-actions li{
+    border-inline-end: 1px solid #adadad !important;
+}
+.ant-card-actions li:last-child{
+    border-inline-end: none !important;
+}
