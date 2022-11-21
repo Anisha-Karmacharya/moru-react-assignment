@@ -9,7 +9,7 @@ function App() {
   // FETCH DATA
   const getData=()=>{
     axios.get(`${URL}`).then(response => {
-      setData(response.data) 
+      setData(response.data.map((user) => ({...user, isFavorite: false})))  
     })
   }
   
