@@ -1,10 +1,88 @@
-import React from "react";
-import { Row, Col, Card } from "antd";
-import { MailOutlined, PhoneOutlined, GlobalOutlined, HeartOutlined, EditOutlined, DeleteFilled} from "@ant-design/icons";
+import React , {useState} from "react";
+import { Row, Col, Card, Modal, Form, Input } from "antd";
+import {
+  MailOutlined,
+  PhoneOutlined,
+  GlobalOutlined,
+  HeartOutlined,
+  EditOutlined,
+  DeleteFilled,
+} from "@ant-design/icons";
 const User = ({ userData }) => {
   const { Meta } = Card;
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+  const handleCancel = () => {
+    console.log('Clicked cancel button');
+    setOpen(false);
+  }
   return (
     <div>
+      <Modal
+        title="Edit User"
+        open={open}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+      >
+        <Form name="editUser">
+          <Form.Item
+            name={"name"}
+            label="Name"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name={"email"}
+            label="Email"
+            rules={[
+              {
+                type: "email",
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name={"phone"}
+            label="Phone"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name={"website"}
+            label="Website"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
       <Row
         gutter={[
           { xs: 8, sm: 16, md: 24, lg: 32 },
@@ -29,7 +107,7 @@ const User = ({ userData }) => {
                 }
                 actions={[
                   <HeartOutlined key="favorite" style={{ color: "red" }} />,
-                  <EditOutlined key="edit" />,
+                  <EditOutlined key="edit" onClick={showModal} />,
                   <DeleteFilled key="delete" />,
                 ]}
               >
