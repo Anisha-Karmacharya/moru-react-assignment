@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/moru-react-assignment/static/css/main.e921e6ce.css",
+    "main.js": "/moru-react-assignment/static/js/main.19693bcb.js",
+    "index.html": "/moru-react-assignment/index.html",
+    "main.e921e6ce.css.map": "/moru-react-assignment/static/css/main.e921e6ce.css.map",
+    "main.19693bcb.js.map": "/moru-react-assignment/static/js/main.19693bcb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e921e6ce.css",
+    "static/js/main.19693bcb.js"
+  ]
+}
