@@ -127,6 +127,7 @@ const User = ({ url, userData, handleFavorite, openNotification, handleDelete })
           { xs: 8, sm: 16, md: 24, lg: 32 },
           { xs: 8, sm: 16, md: 24, lg: 32 },
         ]}
+        className="userDetail"
       >
         {userData &&
           userData.length > 0 &&
