@@ -4,13 +4,20 @@ const User = ({ userData }) => {
   const { Meta } = Card;
   return (
     <div>
-      <Row>
+      <Row gutter={[16, 16]}>
         {userData &&
           userData.length > 0 &&
           userData.map((user, index) => (
             <div key={index}>
               <Col>
-                <Card>
+                <Card
+                    cover={
+                        <img
+                        alt="user-image"
+                        src="https://avatars.dicebear.com/api/micah/your-custom-seed.svg"
+                        />
+                    }
+                >
                     <Meta
                       title={user.name}
                       description={[
