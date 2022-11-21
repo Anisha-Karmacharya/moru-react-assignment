@@ -12,14 +12,19 @@ function App() {
       setData(response.data.map((user) => ({...user, isFavorite: false})))  
     })
   }
-  
+  // HANDLE FAVORITE
+  const handleFavorite = (id) => {
+    setData((users) =>
+      users.map((user) => (user.id === id ? { ...user, isFavorite: !user.isFavorite } : user))
+    );
+  };
   useEffect(()=>{
     getData()
   },[])
   
   return (
     <div className="App">
-      <User userData={data}/>
+      <User userData={data} handleFavorite={handleFavorite}/>
     </div>
   );
 }

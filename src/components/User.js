@@ -8,7 +8,7 @@ import {
   EditOutlined,
   DeleteFilled,
 } from "@ant-design/icons";
-const User = ({ userData }) => {
+const User = ({ userData, handleFavorite }) => {
   const { Meta } = Card;
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -118,7 +118,7 @@ const User = ({ userData }) => {
                   />
                 }
                 actions={[
-                  <HeartOutlined key="favorite" style={{ color: "red" }} onClick={openNotification}/>,
+                  <HeartOutlined key="favorite" style={{ color: "red" }} onClick= {() => {openNotification(); handleFavorite(user.id)}}/>,
                   <EditOutlined key="edit" onClick={showModal} />,
                   <DeleteFilled key="delete" />,
                 ]}
